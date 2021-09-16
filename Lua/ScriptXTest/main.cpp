@@ -79,6 +79,7 @@ int main() {
     engine->eval("print(\"BaseClass:\",TestNameSpace.BaseClass)");
     engine->eval("print(TestNameSpace.BaseClass():name())");
 
+    //lua扩展c++ class
     std::cout<<"-------- lua extend cpp class----------"<<std::endl;
     {
         engine->eval(R"(
@@ -152,6 +153,7 @@ int main() {
         std::cout<<"func_ret.isNumber():"<<func_ret.isNumber()<<std::endl;
         std::cout<<"func_ret:"<<func_ret.asNumber().toDouble()<<std::endl;
 
+        //c++调用lua函数
         std::cout<<"-------- cpp call lua function ----------"<<std::endl;
         {
             engine->eval("function compare(a,b) print(\"a==b:\" .. tostring(a==b)) end");
@@ -166,6 +168,7 @@ int main() {
             }
         }
 
+        //c++调用lua table函数
         std::cout<<"-------- cpp call lua table function ----------"<<std::endl;
         {
             engine->eval("Player={} function Player:Compare(a,b) print(tostring(self),tostring(a),tostring(b)) print(\"a==b:\" .. tostring(a==b)) end");
@@ -201,6 +204,7 @@ int main() {
             }
         }
 
+        //在c++代码里比较lua返回对象实例
         std::cout<<"-------- cpp compare lua return instance ----------"<<std::endl;
         {
             engine->eval("function set_and_get(a) print(a) print(\"a is instanceof(MyImage): \" .. tostring(ScriptX.isInstanceOf(a,MyImage))) return a end");
